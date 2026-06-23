@@ -1,0 +1,69 @@
+using CardMiniGame.Rewards;
+using CardMiniGame.Wheel;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace CardMiniGame.UI
+{
+    public class RewardCardView : MonoBehaviour
+    {
+        [SerializeField] private GameObject root;
+        [SerializeField] private Image frameImage;
+        [SerializeField] private Image iconImage;
+        [SerializeField] private TMP_Text titleText;
+        [SerializeField] private TMP_Text amountText;
+        [SerializeField] private Color rewardFrameColor = Color.white;
+        [SerializeField] private Color bombFrameColor = new Color(1f, 0.15f, 0.1f, 1f);
+
+        public void SetVisible(bool isVisible)
+        {
+            GameObject target = root == null ? gameObject : root;
+            target.SetActive(isVisible);
+        }
+
+        public void Refresh(SpinResult result)
+        {
+            Refresh(result.Reward, result.Amount, result.IsBomb);
+        }
+
+        public void Refresh(RewardDefinition reward, int amount, bool isBomb)
+        {
+            if (frameImage != null)
+            {
+                frameImage.color = isBomb ? bombFrameColor : rewardFrameColor;
+            }
+
+            if (iconImage != null)
+            {
+                iconImage.sprite = reward == null ? null : reward.Icon;
+                iconImage.enabled = iconImage.sprite != null;
+            }
+
+            if (titleText != null)
+            {
+                titleText.text = isBomb ? "BOMB" : GetRewardTitle(reward);
+            }
+
+            if (amountText != null)
+            {
+                amountText.text = isBomb || amount <= 0 ? string.Empty : "x" + amount;
+            }
+        }
+
+        private static string GetRewardTitle(RewardDefinition reward)
+        {
+            if (reward == null)
+            {
+                return "REWARD";
+            }
+
+            if (!string.IsNullOrEmpty(reward.DisplayName))
+            {
+                return reward.DisplayName.ToUpperInvariant();
+            }
+
+            return string.IsNullOrEmpty(reward.RewardId) ? "REWARD" : reward.RewardId.ToUpperInvariant();
+        }
+    }
+}

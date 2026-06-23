@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b332fc5e3547249eb6378cb4b7c6ce, type: 3}
+  m_Name: SafeWheel
+  m_EditorClassIdentifier: 
+  WheelType: 1
+  Slices:
+  - Reward: {fileID: 11400000, guid: bdc4135395a37784e92e2752168979de, type: 2}
+    AmountMultiplier: 3
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: 95f9256d1dbd2c842b48c2753448b0de, type: 2}
+    AmountMultiplier: 2
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: e8f288db47a3da944ad619946935d09c, type: 2}
+    AmountMultiplier: 1
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: 95f9256d1dbd2c842b48c2753448b0de, type: 2}
+    AmountMultiplier: 3
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: e8f288db47a3da944ad619946935d09c, type: 2}
+    AmountMultiplier: 2
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: 7fd0d17aba6960f458641ecf8aef6955, type: 2}
+    AmountMultiplier: 1
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: bdc4135395a37784e92e2752168979de, type: 2}
+    AmountMultiplier: 5
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: 95f9256d1dbd2c842b48c2753448b0de, type: 2}
+    AmountMultiplier: 4
+    IsBomb: 0
+  WheelBaseSprite: {fileID: 21300000, guid: 1f5d94c8d1b68044383a47d17db357db, type: 3}
+  PointerSprite: {fileID: 21300000, guid: 6c362c007f68ae846b8d657068c2d7cb, type: 3}
+  VisualProfile: {fileID: 11400000, guid: ccd52c5aef155c54496ce23f227c6ad6, type: 2}

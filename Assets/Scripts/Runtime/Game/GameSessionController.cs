@@ -31,6 +31,7 @@ namespace CardMiniGame.Game
             zoneService = zones;
             spinResolver = resolver;
             HidePopups();
+            ClearResultCard();
             RefreshAllViews();
         }
 
@@ -116,7 +117,8 @@ namespace CardMiniGame.Game
 
             try
             {
-                spinResult = spinResolver.Resolve(wheelConfig);
+                float rewardScaling = zoneConfig == null ? 1f : zoneConfig.RewardScalingPerZone;
+                spinResult = spinResolver.Resolve(wheelConfig, session.CurrentZone, rewardScaling);
             }
             catch (Exception exception)
             {
@@ -133,7 +135,7 @@ namespace CardMiniGame.Game
                 return;
             }
 
-            wheelView.SpinToSlice(wheelConfig, spinResult.SelectedSliceIndex, () => CompleteSpin(spinResult));
+            wheelView.SpinToResult(wheelConfig, spinResult, () => CompleteSpin(spinResult));
         }
 
         private void HandleLeaveClicked()
@@ -165,6 +167,7 @@ namespace CardMiniGame.Game
 
             session.Restart();
             HidePopups();
+            ClearResultCard();
             RefreshAllViews();
         }
 
@@ -213,7 +216,9 @@ namespace CardMiniGame.Game
                     zoneType,
                     session.CollectedRewards.GetTotalValue(),
                     isReady,
-                    canLeave);
+                    canLeave,
+                    zoneConfig == null ? 5 : zoneConfig.SafeZoneInterval,
+                    zoneConfig == null ? 30 : zoneConfig.SuperZoneInterval);
             }
 
             if (rewardListView != null)
@@ -257,6 +262,14 @@ namespace CardMiniGame.Game
             if (cashoutPopupView != null)
             {
                 cashoutPopupView.Hide();
+            }
+        }
+
+        private void ClearResultCard()
+        {
+            if (wheelView != null)
+            {
+                wheelView.ClearResult();
             }
         }
 

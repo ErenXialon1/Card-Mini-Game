@@ -10,13 +10,22 @@ namespace CardMiniGame.UI
         [SerializeField] private TMP_Text zoneTitleText;
         [SerializeField] private TMP_Text zoneTypeText;
         [SerializeField] private TMP_Text totalRewardText;
+        [SerializeField] private ZoneTrackView zoneTrackView;
+        [SerializeField] private ZoneBadgeView zoneBadgeView;
         [SerializeField] private AutoButtonBinder spinButton;
         [SerializeField] private AutoButtonBinder leaveButton;
 
         public Button SpinButton => spinButton == null ? null : spinButton.Button;
         public Button LeaveButton => leaveButton == null ? null : leaveButton.Button;
 
-        public void Refresh(int currentZone, WheelType zoneType, int totalReward, bool canSpin, bool canLeave)
+        public void Refresh(
+            int currentZone,
+            WheelType zoneType,
+            int totalReward,
+            bool canSpin,
+            bool canLeave,
+            int safeZoneInterval,
+            int superZoneInterval)
         {
             if (zoneTitleText != null)
             {
@@ -31,6 +40,16 @@ namespace CardMiniGame.UI
             if (totalRewardText != null)
             {
                 totalRewardText.text = totalReward.ToString();
+            }
+
+            if (zoneTrackView != null)
+            {
+                zoneTrackView.Refresh(currentZone, safeZoneInterval, superZoneInterval);
+            }
+
+            if (zoneBadgeView != null)
+            {
+                zoneBadgeView.Refresh(currentZone, safeZoneInterval, superZoneInterval);
             }
 
             Button spin = SpinButton;

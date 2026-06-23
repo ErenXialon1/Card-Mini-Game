@@ -1,11 +1,12 @@
 using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace CardMiniGame.Wheel
 {
     public class WheelSpinResolver
     {
-        public SpinResult Resolve(WheelConfig config)
+        public SpinResult Resolve(WheelConfig config, int zone, float rewardScalingPerZone)
         {
             if (config == null)
             {
@@ -26,9 +27,19 @@ namespace CardMiniGame.Wheel
             }
 
             bool isBomb = slice.IsBomb;
-            int amount = isBomb || slice.Reward == null ? 0 : slice.Reward.BaseAmount * slice.AmountMultiplier;
+            int amount = isBomb || slice.Reward == null
+                ? 0
+                : GetScaledAmount(slice, zone, rewardScalingPerZone);
 
             return new SpinResult(selectedSliceIndex, slice.Reward, amount, isBomb);
+        }
+
+        private static int GetScaledAmount(WheelSliceDefinition slice, int zone, float rewardScalingPerZone)
+        {
+            int safeZone = Mathf.Max(1, zone);
+            float safeScaling = rewardScalingPerZone <= 0f ? 1f : rewardScalingPerZone;
+            float scale = Mathf.Pow(safeScaling, safeZone - 1);
+            return Mathf.RoundToInt(slice.Reward.BaseAmount * slice.AmountMultiplier * scale);
         }
     }
 }

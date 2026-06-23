@@ -21,13 +21,19 @@ namespace CardMiniGame.UI
             }
 
             IReadOnlyList<CollectedReward> rewards = inventory.Rewards;
+            List<CollectedReward> aggregatedRewards = new List<CollectedReward>();
 
             for (int i = 0; i < rewards.Count; i++)
+            {
+                AddAggregated(aggregatedRewards, rewards[i]);
+            }
+
+            for (int i = 0; i < aggregatedRewards.Count; i++)
             {
                 RewardItemView item = Instantiate(rewardItemTemplate, rewardListContainer);
                 item.gameObject.SetActive(true);
                 spawnedItems.Add(item);
-                item.Refresh(rewards[i]);
+                item.Refresh(aggregatedRewards[i]);
             }
         }
 
@@ -61,6 +67,27 @@ namespace CardMiniGame.UI
             }
 
             spawnedItems.Clear();
+        }
+
+        private static void AddAggregated(List<CollectedReward> target, CollectedReward reward)
+        {
+            if (reward.Amount <= 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < target.Count; i++)
+            {
+                CollectedReward current = target[i];
+
+                if (current.Reward == reward.Reward)
+                {
+                    target[i] = new CollectedReward(current.Reward, current.Amount + reward.Amount);
+                    return;
+                }
+            }
+
+            target.Add(reward);
         }
     }
 }

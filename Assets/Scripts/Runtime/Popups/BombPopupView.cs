@@ -1,4 +1,5 @@
 using CardMiniGame.UI;
+using CardMiniGame.Rewards;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ namespace CardMiniGame.Popups
         [SerializeField] private AutoButtonBinder restartButton;
         [SerializeField] private AutoButtonBinder continueOptionalButton;
         [SerializeField] private PopupScaleAnimator popupAnimator;
+        [SerializeField] private RewardCardView bombCardView;
+        [SerializeField] private RewardDefinition bombReward;
 
         public Button RestartButton => restartButton == null ? null : restartButton.Button;
 
@@ -22,12 +25,18 @@ namespace CardMiniGame.Popups
 
             if (titleText != null)
             {
-                titleText.text = "BOMB!";
+                titleText.text = "OH NO, A BOMB EXPLODED RIGHT IN YOUR HANDS!";
             }
 
             if (descriptionText != null)
             {
-                descriptionText.text = "Lost rewards: " + lostAmount;
+                descriptionText.text = "You lost " + lostAmount + " rewards.";
+            }
+
+            if (bombCardView != null)
+            {
+                bombCardView.Refresh(bombReward, 0, true);
+                bombCardView.SetVisible(true);
             }
 
             if (continueOptionalButton != null)

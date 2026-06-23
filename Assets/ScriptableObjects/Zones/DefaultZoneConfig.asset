@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5862e330a9a9453ab61a87e551ac5f32, type: 3}
+  m_Name: DefaultZoneConfig
+  m_EditorClassIdentifier: 
+  SafeZoneInterval: 5
+  SuperZoneInterval: 30
+  RewardScalingPerZone: 1.15
+  NormalWheel: {fileID: 11400000, guid: 38d369b7f0420094db1fbb4b41759f47, type: 2}
+  SafeWheel: {fileID: 11400000, guid: a6037b89e7a40b948bd1bad4c657e0f0, type: 2}
+  SuperWheel: {fileID: 11400000, guid: 2c2d6bead80a0ca41af479614e034b93, type: 2}

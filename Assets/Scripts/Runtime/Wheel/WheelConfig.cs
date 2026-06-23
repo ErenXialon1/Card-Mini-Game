@@ -9,6 +9,7 @@ namespace CardMiniGame.Wheel
         public WheelType WheelType = WheelType.Normal;
         public List<WheelSliceDefinition> Slices = new List<WheelSliceDefinition>();
         public Sprite WheelBaseSprite;
+        public Sprite PointerSprite;
         public SpinVisualProfile VisualProfile;
     }
 }
