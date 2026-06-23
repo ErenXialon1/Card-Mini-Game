@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{2ea94bba-0fdf-4f3b-bda7-1c277ba84428}">
+		<property name="assetPath">
+			<value>super_zone_enter.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.99303854875283448</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2abc152-fb77-4c1b-a8eb-9d3af7588580}</destination>
+		</relationship>
+	</object>
+</objects>

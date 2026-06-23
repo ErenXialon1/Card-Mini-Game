@@ -19,6 +19,11 @@ namespace CardMiniGame.UI
 
         public void Refresh(WheelSliceDefinition slice)
         {
+            Refresh(slice, 1, 1f);
+        }
+
+        public void Refresh(WheelSliceDefinition slice, int zone, float rewardScalingPerZone)
+        {
             if (slice == null)
             {
                 SetVisible(false);
@@ -35,18 +40,20 @@ namespace CardMiniGame.UI
 
             if (amountText != null)
             {
-                amountText.text = slice.IsBomb ? "BOMB" : GetAmountText(slice);
+                amountText.text = slice.IsBomb ? "BOMB" : GetAmountText(slice, zone, rewardScalingPerZone);
             }
         }
 
-        private static string GetAmountText(WheelSliceDefinition slice)
+        private static string GetAmountText(WheelSliceDefinition slice, int zone, float rewardScalingPerZone)
         {
-            if (slice.Reward == null)
+            int amount = WheelSpinResolver.GetScaledAmount(slice, zone, rewardScalingPerZone);
+
+            if (amount <= 0)
             {
                 return "0";
             }
 
-            return (slice.Reward.BaseAmount * slice.AmountMultiplier).ToString();
+            return amount.ToString();
         }
     }
 }

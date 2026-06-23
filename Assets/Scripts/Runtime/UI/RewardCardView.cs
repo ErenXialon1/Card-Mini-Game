@@ -2,11 +2,12 @@ using CardMiniGame.Rewards;
 using CardMiniGame.Wheel;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace CardMiniGame.UI
 {
-    public class RewardCardView : MonoBehaviour
+    public class RewardCardView : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private GameObject root;
         [SerializeField] private Image frameImage;
@@ -14,11 +15,13 @@ namespace CardMiniGame.UI
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text amountText;
         [SerializeField] private UIAppearAnimator appearAnimator;
+        [SerializeField] private bool hideOnPointerClick;
         [SerializeField] private Color rewardFrameColor = Color.white;
         [SerializeField] private Color bombFrameColor = new Color(1f, 0.15f, 0.1f, 1f);
 
         public void SetVisible(bool isVisible)
         {
+            ApplyClickRaycastState();
             GameObject target = root == null ? gameObject : root;
             target.SetActive(isVisible);
 
@@ -26,6 +29,21 @@ namespace CardMiniGame.UI
             {
                 appearAnimator.Play();
             }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (!hideOnPointerClick)
+            {
+                return;
+            }
+
+            if (eventData.button != PointerEventData.InputButton.Left)
+            {
+                return;
+            }
+
+            SetVisible(false);
         }
 
         public void Refresh(SpinResult result)
@@ -75,16 +93,19 @@ namespace CardMiniGame.UI
         private void Awake()
         {
             BindAnimator();
+            ApplyClickRaycastState();
         }
 
         private void Reset()
         {
             BindAnimator();
+            ApplyClickRaycastState();
         }
 
         private void OnValidate()
         {
             BindAnimator();
+            ApplyClickRaycastState();
         }
 
         private void BindAnimator()
@@ -92,6 +113,14 @@ namespace CardMiniGame.UI
             if (appearAnimator == null)
             {
                 appearAnimator = GetComponent<UIAppearAnimator>();
+            }
+        }
+
+        private void ApplyClickRaycastState()
+        {
+            if (frameImage != null)
+            {
+                frameImage.raycastTarget = hideOnPointerClick;
             }
         }
     }

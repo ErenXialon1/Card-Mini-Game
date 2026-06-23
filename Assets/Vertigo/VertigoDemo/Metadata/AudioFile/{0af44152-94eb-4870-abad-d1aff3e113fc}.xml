@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{0af44152-94eb-4870-abad-d1aff3e113fc}">
+		<property name="assetPath">
+			<value>bomb_fail_low_boom.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.0000453514739229</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2abc152-fb77-4c1b-a8eb-9d3af7588580}</destination>
+		</relationship>
+	</object>
+</objects>

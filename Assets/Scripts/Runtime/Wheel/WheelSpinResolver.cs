@@ -34,8 +34,13 @@ namespace CardMiniGame.Wheel
             return new SpinResult(selectedSliceIndex, slice.Reward, amount, isBomb);
         }
 
-        private static int GetScaledAmount(WheelSliceDefinition slice, int zone, float rewardScalingPerZone)
+        public static int GetScaledAmount(WheelSliceDefinition slice, int zone, float rewardScalingPerZone)
         {
+            if (slice == null || slice.IsBomb || slice.Reward == null)
+            {
+                return 0;
+            }
+
             int safeZone = Mathf.Max(1, zone);
             float safeScaling = rewardScalingPerZone <= 0f ? 1f : rewardScalingPerZone;
             float scale = Mathf.Pow(safeScaling, safeZone - 1);

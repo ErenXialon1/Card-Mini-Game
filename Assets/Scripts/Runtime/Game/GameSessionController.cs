@@ -1,5 +1,6 @@
 using System;
 using CardMiniGame.Popups;
+using CardMiniGame.Rewards;
 using CardMiniGame.UI;
 using CardMiniGame.Wheel;
 using CardMiniGame.Zones;
@@ -14,6 +15,7 @@ namespace CardMiniGame.Game
         [SerializeField] private WheelView wheelView;
         [SerializeField] private BombPopupView bombPopupView;
         [SerializeField] private CashoutPopupView cashoutPopupView;
+        [SerializeField] private GameFeedbackAudio feedbackAudio;
 
         private ZoneConfig zoneConfig;
         private GameSession session;
@@ -33,6 +35,7 @@ namespace CardMiniGame.Game
             HidePopups();
             ClearResultCard();
             RefreshAllViews();
+            RegisterButtonListeners();
         }
 
         private void OnEnable()
@@ -71,7 +74,7 @@ namespace CardMiniGame.Game
 
             if (cashoutPopupView != null && cashoutPopupView.RestartButton != null)
             {
-                cashoutPopupView.RestartButton.onClick.AddListener(HandleRestartClicked);
+                cashoutPopupView.RestartButton.onClick.AddListener(HandleCashoutConfirmedClicked);
             }
         }
 
@@ -94,7 +97,7 @@ namespace CardMiniGame.Game
 
             if (cashoutPopupView != null && cashoutPopupView.RestartButton != null)
             {
-                cashoutPopupView.RestartButton.onClick.RemoveListener(HandleRestartClicked);
+                cashoutPopupView.RestartButton.onClick.RemoveListener(HandleCashoutConfirmedClicked);
             }
         }
 
@@ -154,8 +157,11 @@ namespace CardMiniGame.Game
 
             if (cashoutPopupView != null)
             {
-                cashoutPopupView.Show(session.CollectedRewards.GetTotalValue());
+                cashoutPopupView.Show(session.CollectedRewards);
+                return;
             }
+
+            Debug.LogWarning("CashoutPopupView reference is missing.", this);
         }
 
         private void HandleRestartClicked()
@@ -171,6 +177,17 @@ namespace CardMiniGame.Game
             RefreshAllViews();
         }
 
+        private void HandleCashoutConfirmedClicked()
+        {
+            if (!IsInitialized)
+            {
+                return;
+            }
+
+            PersistentInventory.Instance.AddRewards(session.CollectedRewards);
+            HandleRestartClicked();
+        }
+
         private void CompleteSpin(SpinResult spinResult)
         {
             if (!IsInitialized)
@@ -182,6 +199,7 @@ namespace CardMiniGame.Game
             {
                 int lostAmount = session.CollectedRewards.GetTotalValue();
                 session.LoseAllRewards();
+                feedbackAudio?.PlayBomb();
                 RefreshAllViews();
 
                 if (bombPopupView != null)
@@ -193,7 +211,9 @@ namespace CardMiniGame.Game
             }
 
             session.AddReward(spinResult.Reward, spinResult.Amount);
+            feedbackAudio?.PlayReward(spinResult.Reward);
             session.AdvanceZone();
+            feedbackAudio?.PlayZoneChanged(zoneService == null ? WheelType.Normal : zoneService.GetZoneType(session.CurrentZone));
             session.SessionState = SessionState.Ready;
             RefreshAllViews();
         }
@@ -228,7 +248,8 @@ namespace CardMiniGame.Game
 
             if (wheelView != null)
             {
-                wheelView.Build(GetCurrentWheelConfig());
+                float rewardScaling = zoneConfig == null ? 1f : zoneConfig.RewardScalingPerZone;
+                wheelView.Build(GetCurrentWheelConfig(), session.CurrentZone, rewardScaling);
             }
         }
 

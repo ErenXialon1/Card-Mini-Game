@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CoinSmall
   m_EditorClassIdentifier: 
   RewardId: CoinSmall
-  DisplayName: Coin Small
+  DisplayName: Cash
   Icon: {fileID: 21300000, guid: 2915383f3e1cb6c4c8dbd715acbf3800, type: 3}
-  BaseAmount: 25
+  BaseAmount: 100
   RewardType: 0
   Rarity: 1

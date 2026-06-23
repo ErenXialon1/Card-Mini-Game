@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoldSpecial
   m_EditorClassIdentifier: 
   RewardId: GoldSpecial
-  DisplayName: Gold Special
+  DisplayName: Big Chest
   Icon: {fileID: 21300000, guid: f8b56b183b19b6f4c8e500fb60cc2b62, type: 3}
-  BaseAmount: 200
+  BaseAmount: 1
   RewardType: 1
   Rarity: 3

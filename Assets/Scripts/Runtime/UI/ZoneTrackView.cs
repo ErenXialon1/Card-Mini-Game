@@ -22,8 +22,6 @@ namespace CardMiniGame.UI
             }
 
             int centerIndex = zoneTexts.Count / 2;
-            int firstZone = Mathf.Max(1, currentZone - centerIndex);
-
             for (int i = 0; i < zoneTexts.Count; i++)
             {
                 TMP_Text zoneText = zoneTexts[i];
@@ -33,12 +31,20 @@ namespace CardMiniGame.UI
                     continue;
                 }
 
-                int zone = firstZone + i;
+                int zone = currentZone + i - centerIndex;
+                bool shouldHide = zone < 1;
                 bool isCurrent = zone == currentZone;
-                zoneText.text = zone.ToString();
+                zoneText.text = shouldHide ? string.Empty : zone.ToString();
                 zoneText.color = isCurrent
                     ? currentZoneColor
                     : GetZoneColor(zone, safeZoneInterval, superZoneInterval);
+
+                if (shouldHide)
+                {
+                    Color hiddenColor = zoneText.color;
+                    hiddenColor.a = 0f;
+                    zoneText.color = hiddenColor;
+                }
             }
 
             if (currentZoneMarker != null)

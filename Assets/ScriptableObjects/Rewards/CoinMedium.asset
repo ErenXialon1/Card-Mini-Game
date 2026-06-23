@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CoinMedium
   m_EditorClassIdentifier: 
   RewardId: CoinMedium
-  DisplayName: Coin Medium
+  DisplayName: Gold
   Icon: {fileID: 21300000, guid: a0882a80e970e4f478af9abd53a2e4f4, type: 3}
-  BaseAmount: 50
+  BaseAmount: 25
   RewardType: 0
   Rarity: 1

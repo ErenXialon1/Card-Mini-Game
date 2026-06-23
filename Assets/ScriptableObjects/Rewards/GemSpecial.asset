@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GemSpecial
   m_EditorClassIdentifier: 
   RewardId: GemSpecial
-  DisplayName: Gem Special
+  DisplayName: Super Chest
   Icon: {fileID: 21300000, guid: 8d450e4979f884d49991fda64e431d86, type: 3}
-  BaseAmount: 350
+  BaseAmount: 1
   RewardType: 1
   Rarity: 4

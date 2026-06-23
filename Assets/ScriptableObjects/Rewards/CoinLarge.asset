@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CoinLarge
   m_EditorClassIdentifier: 
   RewardId: CoinLarge
-  DisplayName: Coin Large
-  Icon: {fileID: 21300000, guid: 3c646a953ba504b45a6a93c8859932d5, type: 3}
-  BaseAmount: 100
-  RewardType: 0
+  DisplayName: Bronze Chest
+  Icon: {fileID: 21300000, guid: 36b753f009beeea44ad2857609008a5b, type: 3}
+  BaseAmount: 1
+  RewardType: 1
   Rarity: 2

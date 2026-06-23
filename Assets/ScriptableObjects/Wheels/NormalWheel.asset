@@ -20,23 +20,23 @@ MonoBehaviour:
   - Reward: {fileID: 11400000, guid: 95f9256d1dbd2c842b48c2753448b0de, type: 2}
     AmountMultiplier: 1
     IsBomb: 0
-  - Reward: {fileID: 11400000, guid: bdc4135395a37784e92e2752168979de, type: 2}
-    AmountMultiplier: 2
+  - Reward: {fileID: 11400000, guid: e2ae9eced9f9456da548a13928c82afd, type: 2}
+    AmountMultiplier: 1
     IsBomb: 0
   - Reward: {fileID: 11400000, guid: f39989b82dbabda43bf6c3e05cee6755, type: 2}
     AmountMultiplier: 0
     IsBomb: 1
+  - Reward: {fileID: 11400000, guid: 9d6c2cb12d0649b7b18ec124256950dd, type: 2}
+    AmountMultiplier: 1
+    IsBomb: 0
+  - Reward: {fileID: 11400000, guid: 8f2f3b8e6d8247d885c984479f34c5aa, type: 2}
+    AmountMultiplier: 1
+    IsBomb: 0
   - Reward: {fileID: 11400000, guid: e8f288db47a3da944ad619946935d09c, type: 2}
     AmountMultiplier: 1
     IsBomb: 0
-  - Reward: {fileID: 11400000, guid: 95f9256d1dbd2c842b48c2753448b0de, type: 2}
-    AmountMultiplier: 2
-    IsBomb: 0
-  - Reward: {fileID: 11400000, guid: bdc4135395a37784e92e2752168979de, type: 2}
-    AmountMultiplier: 3
-    IsBomb: 0
-  - Reward: {fileID: 11400000, guid: e8f288db47a3da944ad619946935d09c, type: 2}
-    AmountMultiplier: 2
+  - Reward: {fileID: 11400000, guid: 5c13db8263b94173b22a4f7617e809c5, type: 2}
+    AmountMultiplier: 1
     IsBomb: 0
   WheelBaseSprite: {fileID: 21300000, guid: ea5ca310fe5936d4f8527acf209f244d, type: 3}
   PointerSprite: {fileID: 21300000, guid: eb0052572fffd3640935f12f6c5cbf4d, type: 3}

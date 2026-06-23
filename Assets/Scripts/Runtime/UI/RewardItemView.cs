@@ -13,15 +13,21 @@ namespace CardMiniGame.UI
 
         public void Refresh(CollectedReward reward)
         {
+            string displayName = GetDisplayName(reward.Reward);
+            Sprite icon = reward.Reward == null ? null : reward.Reward.Icon;
+            Refresh(displayName, icon, reward.Amount);
+        }
+
+        public void Refresh(string displayName, Sprite icon, int amount)
+        {
             if (amountText != null)
             {
-                string displayName = reward.Reward == null ? "Reward" : reward.Reward.DisplayName;
-                amountText.text = displayName + " x" + reward.Amount;
+                amountText.text = displayName + " x" + amount;
             }
 
             if (iconImage != null)
             {
-                iconImage.sprite = reward.Reward == null ? null : reward.Reward.Icon;
+                iconImage.sprite = icon;
                 iconImage.enabled = iconImage.sprite != null;
             }
 
@@ -52,6 +58,21 @@ namespace CardMiniGame.UI
             {
                 appearAnimator = GetComponent<UIAppearAnimator>();
             }
+        }
+
+        private static string GetDisplayName(RewardDefinition reward)
+        {
+            if (reward == null)
+            {
+                return "Reward";
+            }
+
+            if (!string.IsNullOrEmpty(reward.DisplayName))
+            {
+                return reward.DisplayName;
+            }
+
+            return string.IsNullOrEmpty(reward.RewardId) ? "Reward" : reward.RewardId;
         }
     }
 }
