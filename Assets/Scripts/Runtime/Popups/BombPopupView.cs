@@ -12,7 +12,7 @@ namespace CardMiniGame.Popups
         [SerializeField] private TMP_Text descriptionText;
         [SerializeField] private AutoButtonBinder restartButton;
         [SerializeField] private AutoButtonBinder continueOptionalButton;
-        [SerializeField] private PopupScaleAnimator popupAnimator;
+        [SerializeField] private UIAppearAnimator appearAnimator;
         [SerializeField] private RewardCardView bombCardView;
         [SerializeField] private RewardDefinition bombReward;
 
@@ -21,7 +21,7 @@ namespace CardMiniGame.Popups
         public void Show(int lostAmount)
         {
             gameObject.SetActive(true);
-            popupAnimator?.Show();
+            appearAnimator?.Show();
 
             if (titleText != null)
             {
@@ -47,13 +47,13 @@ namespace CardMiniGame.Popups
 
         public void Hide()
         {
-            if (popupAnimator == null || !gameObject.activeInHierarchy)
+            if (appearAnimator == null || !gameObject.activeInHierarchy)
             {
                 gameObject.SetActive(false);
                 return;
             }
 
-            popupAnimator.Hide(() => gameObject.SetActive(false));
+            appearAnimator.Hide(() => gameObject.SetActive(false));
         }
 
         private void Awake()

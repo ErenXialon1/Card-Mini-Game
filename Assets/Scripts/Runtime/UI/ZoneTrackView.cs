@@ -9,9 +9,9 @@ namespace CardMiniGame.UI
     {
         [SerializeField] private List<TMP_Text> zoneTexts = new List<TMP_Text>();
         [SerializeField] private Image currentZoneMarker;
-        [SerializeField] private Color normalZoneColor = new Color(0.85f, 0.85f, 0.85f, 1f);
-        [SerializeField] private Color safeZoneColor = new Color(0.45f, 1f, 0.25f, 1f);
-        [SerializeField] private Color superZoneColor = new Color(1f, 0.75f, 0.15f, 1f);
+        [SerializeField] private Color normalZoneColor;
+        [SerializeField] private Color safeZoneColor;
+        [SerializeField] private Color superZoneColor;
         [SerializeField] private Color currentZoneColor = Color.white;
 
         public void Refresh(int currentZone, int safeZoneInterval, int superZoneInterval)

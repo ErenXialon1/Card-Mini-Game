@@ -17,8 +17,8 @@ namespace CardMiniGame.UI
                 return;
             }
 
-            float duration = profile == null ? 3f : profile.SpinDuration;
-            int rotations = profile == null ? 4 : profile.MinimumFullRotations;
+            float duration = profile.SpinDuration;
+            int rotations = profile.MinimumFullRotations;
             float sliceAngle = 360f / sliceCount;
             float targetAngle = (Mathf.Max(1, rotations) * 360f) - (Mathf.Clamp(selectedSliceIndex, 0, sliceCount - 1) * sliceAngle);
 

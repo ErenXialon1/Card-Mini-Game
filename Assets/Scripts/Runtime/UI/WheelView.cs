@@ -19,30 +19,15 @@ namespace CardMiniGame.UI
         {
             if (config == null)
             {
+                Debug.LogWarning("WheelView.Build called with null config. Aborting build.");
                 return;
             }
+            wheelBaseImage.sprite = config.WheelBaseSprite;
+            wheelBaseImage.color = config.VisualProfile.WheelTint;
+            pointerImage.sprite = config.PointerSprite;
+            pointerImage.color = config.VisualProfile.PointerTint;
 
-            if (wheelBaseImage != null)
-            {
-                if (config.WheelBaseSprite != null)
-                {
-                    wheelBaseImage.sprite = config.WheelBaseSprite;
-                }
-
-                wheelBaseImage.color = config.VisualProfile == null ? Color.white : config.VisualProfile.WheelTint;
-            }
-
-            if (pointerImage != null)
-            {
-                if (config.PointerSprite != null)
-                {
-                    pointerImage.sprite = config.PointerSprite;
-                }
-
-                pointerImage.color = config.VisualProfile == null ? Color.white : config.VisualProfile.PointerTint;
-            }
-
-            int configuredSliceCount = config.Slices == null ? 0 : config.Slices.Count;
+            int configuredSliceCount = config.Slices.Count;
 
             for (int i = 0; i < sliceViews.Count; i++)
             {
@@ -68,13 +53,11 @@ namespace CardMiniGame.UI
 
         public void SpinToResult(WheelConfig config, SpinResult result, Action onComplete)
         {
-            if (resultCardView != null)
-            {
-                resultCardView.SetVisible(false);
-            }
+            resultCardView.SetVisible(false);
 
             if (spinAnimator == null)
             {
+                Debug.LogWarning("WheelView.SpinToResult called but spinAnimator is null. Showing result immediately.");
                 ShowResult(result);
                 onComplete?.Invoke();
                 return;
@@ -97,19 +80,11 @@ namespace CardMiniGame.UI
 
         public void ClearResult()
         {
-            if (resultCardView != null)
-            {
-                resultCardView.SetVisible(false);
-            }
+            resultCardView.SetVisible(false);
         }
 
         private void ShowResult(SpinResult result)
         {
-            if (resultCardView == null)
-            {
-                return;
-            }
-
             resultCardView.Refresh(result);
             resultCardView.SetVisible(true);
         }

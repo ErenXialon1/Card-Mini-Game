@@ -13,6 +13,7 @@ namespace CardMiniGame.UI
         [SerializeField] private Image iconImage;
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text amountText;
+        [SerializeField] private UIAppearAnimator appearAnimator;
         [SerializeField] private Color rewardFrameColor = Color.white;
         [SerializeField] private Color bombFrameColor = new Color(1f, 0.15f, 0.1f, 1f);
 
@@ -20,6 +21,11 @@ namespace CardMiniGame.UI
         {
             GameObject target = root == null ? gameObject : root;
             target.SetActive(isVisible);
+
+            if (isVisible && appearAnimator != null)
+            {
+                appearAnimator.Play();
+            }
         }
 
         public void Refresh(SpinResult result)
@@ -64,6 +70,29 @@ namespace CardMiniGame.UI
             }
 
             return string.IsNullOrEmpty(reward.RewardId) ? "REWARD" : reward.RewardId.ToUpperInvariant();
+        }
+
+        private void Awake()
+        {
+            BindAnimator();
+        }
+
+        private void Reset()
+        {
+            BindAnimator();
+        }
+
+        private void OnValidate()
+        {
+            BindAnimator();
+        }
+
+        private void BindAnimator()
+        {
+            if (appearAnimator == null)
+            {
+                appearAnimator = GetComponent<UIAppearAnimator>();
+            }
         }
     }
 }

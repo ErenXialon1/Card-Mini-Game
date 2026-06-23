@@ -8,35 +8,22 @@ namespace CardMiniGame.UI
     {
         [SerializeField] private TMP_Text superZoneText;
         [SerializeField] private TMP_Text safeZoneText;
+        [SerializeField] string superZoneLabel = "SUPER ZONE";
+        [SerializeField] string safeZoneLabel = "SAFE ZONE";
         [SerializeField] private Image superZoneBadgeImage;
         [SerializeField] private Image safeZoneBadgeImage;
-        [SerializeField] private Color superZoneColor = new Color(1f, 0.65f, 0.05f, 1f);
-        [SerializeField] private Color safeZoneColor = new Color(0.25f, 0.8f, 0.15f, 1f);
+        [SerializeField] private Color superZoneColor;
+        [SerializeField] private Color safeZoneColor;
 
         public void Refresh(int currentZone, int safeZoneInterval, int superZoneInterval)
         {
             int nextSuperZone = GetNextZone(currentZone, superZoneInterval);
             int nextSafeZone = GetNextZone(currentZone, safeZoneInterval);
 
-            if (superZoneText != null)
-            {
-                superZoneText.text = "SUPER\nZONE " + nextSuperZone;
-            }
-
-            if (safeZoneText != null)
-            {
-                safeZoneText.text = "SAFE\nZONE " + nextSafeZone;
-            }
-
-            if (superZoneBadgeImage != null)
-            {
-                superZoneBadgeImage.color = superZoneColor;
-            }
-
-            if (safeZoneBadgeImage != null)
-            {
-                safeZoneBadgeImage.color = safeZoneColor;
-            }
+            superZoneText.text = superZoneLabel + nextSuperZone;
+            safeZoneText.text = safeZoneLabel + nextSafeZone;
+            superZoneBadgeImage.color = superZoneColor;
+            safeZoneBadgeImage.color = safeZoneColor;
         }
 
         private static int GetNextZone(int currentZone, int interval)

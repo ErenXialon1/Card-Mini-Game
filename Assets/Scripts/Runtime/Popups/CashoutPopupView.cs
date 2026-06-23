@@ -10,14 +10,14 @@ namespace CardMiniGame.Popups
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text amountText;
         [SerializeField] private AutoButtonBinder restartButton;
-        [SerializeField] private PopupScaleAnimator popupAnimator;
+        [SerializeField] private UIAppearAnimator appearAnimator;
 
         public Button RestartButton => restartButton == null ? null : restartButton.Button;
 
         public void Show(int totalAmount)
         {
             gameObject.SetActive(true);
-            popupAnimator?.Show();
+            appearAnimator?.Show();
 
             if (titleText != null)
             {
@@ -32,13 +32,13 @@ namespace CardMiniGame.Popups
 
         public void Hide()
         {
-            if (popupAnimator == null || !gameObject.activeInHierarchy)
+            if (appearAnimator == null || !gameObject.activeInHierarchy)
             {
                 gameObject.SetActive(false);
                 return;
             }
 
-            popupAnimator.Hide(() => gameObject.SetActive(false));
+            appearAnimator.Hide(() => gameObject.SetActive(false));
         }
     }
 }
