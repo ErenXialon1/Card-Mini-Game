@@ -86,10 +86,7 @@ namespace CardMiniGame.Wheel
                 return 0;
             }
 
-            int safeZone = Mathf.Max(1, zone);
-            float safeScaling = rewardScalingPerZone <= 0f ? 1f : rewardScalingPerZone;
-            float scale = Mathf.Pow(safeScaling, safeZone - 1);
-            return Mathf.RoundToInt(slice.Reward.BaseAmount * slice.AmountMultiplier * scale);
+            return Mathf.RoundToInt(slice.Reward.BaseAmount * slice.AmountMultiplier);
         }
     }
 }
