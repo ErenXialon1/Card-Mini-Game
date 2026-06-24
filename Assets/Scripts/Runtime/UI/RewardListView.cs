@@ -11,13 +11,15 @@ namespace CardMiniGame.UI
 
         private readonly List<RewardItemView> spawnedItems = new List<RewardItemView>();
 
-        public void UpdateList(RewardInventory inventory)
+        public bool CanRender => rewardListContainer != null && rewardItemTemplate != null;
+
+        public int UpdateList(RewardInventory inventory)
         {
             ClearSpawnedItems();
 
-            if (inventory == null || rewardListContainer == null || rewardItemTemplate == null)
+            if (inventory == null || !CanRender)
             {
-                return;
+                return 0;
             }
 
             IReadOnlyList<CollectedReward> rewards = inventory.Rewards;
@@ -35,6 +37,8 @@ namespace CardMiniGame.UI
                 spawnedItems.Add(item);
                 item.Refresh(aggregatedRewards[i]);
             }
+
+            return spawnedItems.Count;
         }
 
         private void Awake()

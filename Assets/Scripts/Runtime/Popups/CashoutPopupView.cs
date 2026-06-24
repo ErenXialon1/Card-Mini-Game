@@ -17,11 +17,6 @@ namespace CardMiniGame.Popups
 
         public Button RestartButton => restartButton == null ? null : restartButton.Button;
 
-        public void Show(int totalAmount)
-        {
-            Show(null);
-        }
-
         public void Show(RewardInventory inventory)
         {
             gameObject.SetActive(true);
@@ -32,22 +27,25 @@ namespace CardMiniGame.Popups
                 titleText.text = "CASH OUT";
             }
 
-            if (amountText != null)
+            bool canUseRewardList = CanUseRewardListView();
+            int renderedItemCount = 0;
+
+            if (canUseRewardList)
             {
-                amountText.text = rewardListView == null
-                    ? GetFallbackRewardText(inventory)
-                    : string.Empty;
+                renderedItemCount = rewardListView.UpdateList(inventory);
             }
 
-            if (rewardListView != null)
+            if (amountText != null)
             {
-                rewardListView.UpdateList(inventory);
+                amountText.text = canUseRewardList && renderedItemCount > 0
+                    ? string.Empty
+                    : GetFallbackRewardText(inventory);
             }
         }
 
         public void Hide()
         {
-            if (rewardListView != null)
+            if (CanUseRewardListView())
             {
                 rewardListView.UpdateList(null);
             }
@@ -69,6 +67,13 @@ namespace CardMiniGame.Popups
             }
 
             return BuildRewardLines(inventory);
+        }
+
+        private bool CanUseRewardListView()
+        {
+            return rewardListView != null
+                && rewardListView.CanRender
+                && rewardListView.transform.IsChildOf(transform);
         }
 
         private static string BuildRewardLines(RewardInventory inventory)

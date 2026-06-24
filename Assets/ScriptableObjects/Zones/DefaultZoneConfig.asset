@@ -15,6 +15,11 @@ MonoBehaviour:
   SafeZoneInterval: 5
   SuperZoneInterval: 30
   RewardScalingPerZone: 1.15
+  BombChanceStart: 0.05
+  BombChanceIncreasePerZone: 0.02
+  BombChanceMax: 0.8
+  ContinueBaseCost: 100
+  ContinueCostPerZone: 20
   NormalWheel: {fileID: 11400000, guid: 38d369b7f0420094db1fbb4b41759f47, type: 2}
   SafeWheel: {fileID: 11400000, guid: a6037b89e7a40b948bd1bad4c657e0f0, type: 2}
   SuperWheel: {fileID: 11400000, guid: 2c2d6bead80a0ca41af479614e034b93, type: 2}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,7 +7,7 @@ namespace CardMiniGame.Wheel
 {
     public class WheelSpinResolver
     {
-        public SpinResult Resolve(WheelConfig config, int zone, float rewardScalingPerZone)
+        public SpinResult Resolve(WheelConfig config, int zone, float rewardScalingPerZone, float bombChance)
         {
             if (config == null)
             {
@@ -18,7 +19,7 @@ namespace CardMiniGame.Wheel
                 throw new InvalidOperationException("WheelConfig has no slices.");
             }
 
-            int selectedSliceIndex = Random.Range(0, config.Slices.Count);
+            int selectedSliceIndex = GetSelectedSliceIndex(config, bombChance);
             WheelSliceDefinition slice = config.Slices[selectedSliceIndex];
 
             if (slice == null)
@@ -32,6 +33,50 @@ namespace CardMiniGame.Wheel
                 : GetScaledAmount(slice, zone, rewardScalingPerZone);
 
             return new SpinResult(selectedSliceIndex, slice.Reward, amount, isBomb);
+        }
+
+        private static int GetSelectedSliceIndex(WheelConfig config, float bombChance)
+        {
+            List<int> bombSliceIndexes = new List<int>();
+            List<int> rewardSliceIndexes = new List<int>();
+
+            for (int i = 0; i < config.Slices.Count; i++)
+            {
+                WheelSliceDefinition slice = config.Slices[i];
+
+                if (slice == null)
+                {
+                    continue;
+                }
+
+                if (slice.IsBomb)
+                {
+                    bombSliceIndexes.Add(i);
+                }
+                else
+                {
+                    rewardSliceIndexes.Add(i);
+                }
+            }
+
+            if (bombSliceIndexes.Count == 0 && rewardSliceIndexes.Count == 0)
+            {
+                throw new InvalidOperationException("WheelConfig has no valid slices.");
+            }
+
+            float safeBombChance = Mathf.Clamp01(bombChance);
+
+            if (bombSliceIndexes.Count > 0 && Random.value < safeBombChance)
+            {
+                return bombSliceIndexes[Random.Range(0, bombSliceIndexes.Count)];
+            }
+
+            if (rewardSliceIndexes.Count > 0)
+            {
+                return rewardSliceIndexes[Random.Range(0, rewardSliceIndexes.Count)];
+            }
+
+            return bombSliceIndexes[Random.Range(0, bombSliceIndexes.Count)];
         }
 
         public static int GetScaledAmount(WheelSliceDefinition slice, int zone, float rewardScalingPerZone)

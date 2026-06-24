@@ -21,6 +21,8 @@ namespace CardMiniGame.Game
         private GameSession session;
         private ZoneService zoneService;
         private WheelSpinResolver spinResolver;
+        private bool hasPendingBomb;
+        private int pendingContinueCost;
 
         public void Initialize(
             ZoneConfig config,
@@ -72,6 +74,11 @@ namespace CardMiniGame.Game
                 bombPopupView.RestartButton.onClick.AddListener(HandleRestartClicked);
             }
 
+            if (bombPopupView != null && bombPopupView.ContinueButton != null)
+            {
+                bombPopupView.ContinueButton.onClick.AddListener(HandleContinueClicked);
+            }
+
             if (cashoutPopupView != null && cashoutPopupView.RestartButton != null)
             {
                 cashoutPopupView.RestartButton.onClick.AddListener(HandleCashoutConfirmedClicked);
@@ -93,6 +100,11 @@ namespace CardMiniGame.Game
             if (bombPopupView != null && bombPopupView.RestartButton != null)
             {
                 bombPopupView.RestartButton.onClick.RemoveListener(HandleRestartClicked);
+            }
+
+            if (bombPopupView != null && bombPopupView.ContinueButton != null)
+            {
+                bombPopupView.ContinueButton.onClick.RemoveListener(HandleContinueClicked);
             }
 
             if (cashoutPopupView != null && cashoutPopupView.RestartButton != null)
@@ -121,7 +133,8 @@ namespace CardMiniGame.Game
             try
             {
                 float rewardScaling = zoneConfig == null ? 1f : zoneConfig.RewardScalingPerZone;
-                spinResult = spinResolver.Resolve(wheelConfig, session.CurrentZone, rewardScaling);
+                float bombChance = zoneService == null ? 0f : zoneService.GetBombChance(session.CurrentZone);
+                spinResult = spinResolver.Resolve(wheelConfig, session.CurrentZone, rewardScaling, bombChance);
             }
             catch (Exception exception)
             {
@@ -172,6 +185,8 @@ namespace CardMiniGame.Game
             }
 
             session.Restart();
+            hasPendingBomb = false;
+            pendingContinueCost = 0;
             HidePopups();
             ClearResultCard();
             RefreshAllViews();
@@ -188,6 +203,38 @@ namespace CardMiniGame.Game
             HandleRestartClicked();
         }
 
+        private void HandleContinueClicked()
+        {
+            if (!IsInitialized || !hasPendingBomb)
+            {
+                return;
+            }
+
+            if (!PersistentInventory.Instance.TrySpendCoin(pendingContinueCost))
+            {
+                if (bombPopupView != null)
+                {
+                    bombPopupView.Show(session.CollectedRewards.GetTotalValue(), pendingContinueCost, false);
+                }
+
+                return;
+            }
+
+            hasPendingBomb = false;
+            pendingContinueCost = 0;
+            session.AdvanceZone();
+            session.SessionState = SessionState.Ready;
+            feedbackAudio?.PlayZoneChanged(zoneService == null ? WheelType.Normal : zoneService.GetZoneType(session.CurrentZone));
+
+            if (bombPopupView != null)
+            {
+                bombPopupView.Hide();
+            }
+
+            ClearResultCard();
+            RefreshAllViews();
+        }
+
         private void CompleteSpin(SpinResult spinResult)
         {
             if (!IsInitialized)
@@ -198,13 +245,17 @@ namespace CardMiniGame.Game
             if (spinResult.IsBomb)
             {
                 int lostAmount = session.CollectedRewards.GetTotalValue();
-                session.LoseAllRewards();
+                int continueCost = zoneService == null ? 0 : zoneService.GetContinueCost(session.CurrentZone);
+                bool canContinue = continueCost > 0 && PersistentInventory.Instance.Coin >= continueCost;
+                hasPendingBomb = true;
+                pendingContinueCost = continueCost;
+                session.SessionState = SessionState.Failed;
                 feedbackAudio?.PlayBomb();
                 RefreshAllViews();
 
                 if (bombPopupView != null)
                 {
-                    bombPopupView.Show(lostAmount);
+                    bombPopupView.Show(lostAmount, continueCost, canContinue);
                 }
 
                 return;
