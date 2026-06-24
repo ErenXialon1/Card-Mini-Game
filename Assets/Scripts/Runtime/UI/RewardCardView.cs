@@ -16,13 +16,11 @@ namespace CardMiniGame.UI
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text amountText;
         [SerializeField] private UIAppearAnimator appearAnimator;
-        [SerializeField] private bool hideOnPointerClick;
         [SerializeField] private Color rewardFrameColor = Color.white;
         [SerializeField] private Color bombFrameColor = new Color(1f, 0.15f, 0.1f, 1f);
 
         public void SetVisible(bool isVisible)
         {
-            ApplyClickRaycastState();
             GameObject target = root == null ? gameObject : root;
             target.SetActive(isVisible);
 
@@ -34,10 +32,6 @@ namespace CardMiniGame.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (!hideOnPointerClick)
-            {
-                return;
-            }
 
             if (eventData.button != PointerEventData.InputButton.Left)
             {
@@ -94,19 +88,16 @@ namespace CardMiniGame.UI
         private void Awake()
         {
             BindAnimator();
-            ApplyClickRaycastState();
         }
 
         private void Reset()
         {
             BindAnimator();
-            ApplyClickRaycastState();
         }
 
         private void OnValidate()
         {
             BindAnimator();
-            ApplyClickRaycastState();
         }
 
         private void BindAnimator()
@@ -117,12 +108,5 @@ namespace CardMiniGame.UI
             }
         }
 
-        private void ApplyClickRaycastState()
-        {
-            if (frameImage != null)
-            {
-                frameImage.raycastTarget = hideOnPointerClick;
-            }
-        }
     }
 }

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2555237816030654109}
   - component: {fileID: 2555237816030654108}
   - component: {fileID: 2555237816030654083}
+  - component: {fileID: 2555237815730225588}
+  - component: {fileID: 2555237815730225589}
   m_Layer: 5
   m_Name: ui_button_primary
   m_TagString: Untagged
@@ -135,3 +137,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2555237816030654108}
+--- !u!114 &2555237815730225588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555237816030654110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79110ab721e84d97b58fa0a21f6f4d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleTarget: {fileID: 2555237816030654111}
+  useCurrentScaleAsNormal: 1
+  normalScale: {x: 1, y: 1, z: 1}
+  activeScale: {x: 1.04, y: 1.04, z: 1}
+  enablePressScale: 1
+  pressScale: {x: 0.98, y: 0.98, z: 1}
+  duration: 0.12
+  ease: 6
+  useUnscaledTime: 1
+  requireInteractableSelectable: 1
+--- !u!114 &2555237815730225589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555237816030654110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c204b7de8214df1a3909afc0b1f72cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerEnterEvent:
+    Guid:
+      Data1: 217847265
+      Data2: 1295465272
+      Data3: 967510432
+      Data4: 1728841892
+    Path: event:/ui_hover_rollover
+  pointerExitEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  pointerDownEvent:
+    Guid:
+      Data1: 1959213427
+      Data2: 1298735803
+      Data3: 1592277930
+      Data4: -1867794778
+    Path: event:/ui_button_click_primary
+  pointerUpEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
