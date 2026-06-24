@@ -5,6 +5,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class ZoneBadgeView : MonoBehaviour
+    // Displays the next safe or super zone as a badge.
     {
         [SerializeField] private TMP_Text superZoneText;
         [SerializeField] private TMP_Text safeZoneText;

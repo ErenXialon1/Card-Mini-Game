@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace CardMiniGame.Popups
 {
+    // Shows the bomb popup with continue and restart options.
     public class BombPopupView : MonoBehaviour
     {
         [SerializeField] private TMP_Text titleText;

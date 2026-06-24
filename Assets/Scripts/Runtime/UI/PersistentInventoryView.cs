@@ -7,6 +7,7 @@ namespace CardMiniGame.UI
 {
     [RequireComponent(typeof(GridLayoutGroup))]
     public class PersistentInventoryView : MonoBehaviour
+    // Shows the persistent inventory in a grid layout.
     {
         [SerializeField] private GridLayoutGroup gridLayoutGroup;
         [SerializeField] private Transform itemContainer;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class GameHudView : MonoBehaviour
+    // Shows the main HUD with the current game state and primary actions.
     {
         [SerializeField] private TMP_Text zoneTitleText;
         [SerializeField] private TMP_Text zoneTypeText;

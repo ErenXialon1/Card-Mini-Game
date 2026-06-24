@@ -11,6 +11,7 @@ namespace CardMiniGame.UI
         private const string PlayerPrefsKey = "CardMiniGame.AudioMuted";
 
         [SerializeField] private AutoButtonBinder buttonBinder;
+    // Toggles audio mute state and saves it.
         [SerializeField] private TMP_Text labelText;
         [SerializeField] private string soundOnLabel = "SFX ON";
         [SerializeField] private string soundOffLabel = "SFX OFF";

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Zones
 {
+    // Calculates zone behavior based on the current zone.
     public class ZoneService
     {
         private readonly ZoneConfig config;

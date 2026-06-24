@@ -1,5 +1,6 @@
 namespace CardMiniGame.Rewards
 {
+    // Defines the reward rarity levels.
     public enum RewardRarity
     {
         None = 0,

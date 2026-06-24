@@ -9,6 +9,7 @@ namespace CardMiniGame.UI
         [SerializeField] private Button button;
 
         public Button Button
+    // Automatically finds and exposes the linked Button component.
         {
             get
             {

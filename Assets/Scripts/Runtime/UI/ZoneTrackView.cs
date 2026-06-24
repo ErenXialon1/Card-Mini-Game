@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class ZoneTrackView : MonoBehaviour
+    // Visualizes the zone progression track.
     {
         [SerializeField] private List<TMP_Text> zoneTexts = new List<TMP_Text>();
         [SerializeField] private Image currentZoneMarker;

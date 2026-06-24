@@ -1,5 +1,6 @@
 namespace CardMiniGame.Game
 {
+    // Defines the state of a game session.
     public enum SessionState
     {
         Ready = 0,

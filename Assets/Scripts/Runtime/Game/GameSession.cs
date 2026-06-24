@@ -2,6 +2,7 @@ using CardMiniGame.Rewards;
 
 namespace CardMiniGame.Game
 {
+    // Stores the current game session state and accumulated data.
     public class GameSession
     {
         public int CurrentZone { get; private set; } = 1;

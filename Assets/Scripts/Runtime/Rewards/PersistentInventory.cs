@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Rewards
 {
+    // Stores and loads the persistent reward inventory across sessions.
     public class PersistentInventory
     {
         public const string CoinRewardId = "Coin";

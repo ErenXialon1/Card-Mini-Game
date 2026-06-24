@@ -2,6 +2,7 @@ using CardMiniGame.Rewards;
 
 namespace CardMiniGame.Wheel
 {
+    // Stores the selected slice and reward outcome of a spin.
     public readonly struct SpinResult
     {
         public readonly int SelectedSliceIndex;

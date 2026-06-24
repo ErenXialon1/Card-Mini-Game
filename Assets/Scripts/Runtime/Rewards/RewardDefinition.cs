@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Rewards
 {
+    // Stores the visual and numeric definition of a single reward.
     [CreateAssetMenu(fileName = "reward_definition", menuName = "Vertigo Demo/Rewards/Reward Definition")]
     public class RewardDefinition : ScriptableObject
     {

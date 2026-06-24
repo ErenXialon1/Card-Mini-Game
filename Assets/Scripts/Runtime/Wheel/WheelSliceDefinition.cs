@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Wheel
 {
+    // Stores the reward and behavior data for a wheel slice.
     [Serializable]
     public class WheelSliceDefinition
     {

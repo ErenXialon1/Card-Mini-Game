@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace CardMiniGame.Popups
 {
+    // Shows the cashout popup that summarizes the reward payout.
     public class CashoutPopupView : MonoBehaviour
     {
         [SerializeField] private TMP_Text titleText;

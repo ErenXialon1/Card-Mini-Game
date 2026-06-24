@@ -7,6 +7,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class WheelView : MonoBehaviour
+    // Builds and manages the wheel presentation on screen.
     {
         [SerializeField] private WheelConfig previewConfig;
         [SerializeField] private Image wheelBaseImage;

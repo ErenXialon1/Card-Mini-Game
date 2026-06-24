@@ -2,6 +2,7 @@ using System;
 
 namespace CardMiniGame.Rewards
 {
+    // Represents a single entry in the persistent inventory.
     [Serializable]
     public class PersistentInventoryItem
     {

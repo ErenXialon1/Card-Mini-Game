@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class WheelSliceView : MonoBehaviour
+    // Renders the UI for a single wheel slice.
     {
         [SerializeField] private GameObject root;
         [SerializeField] private Image iconImage;

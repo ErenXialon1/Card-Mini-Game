@@ -1,5 +1,6 @@
 namespace CardMiniGame.Rewards
 {
+    // Stores the reward data collected during a spin.
     public readonly struct CollectedReward
     {
         public readonly RewardDefinition Reward;

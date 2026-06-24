@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Wheel
 {
+    // Stores the wheel slices and visual configuration.
     [CreateAssetMenu(fileName = "wheel_config", menuName = "Vertigo Demo/Wheel Config")]
     public class WheelConfig : ScriptableObject
     {

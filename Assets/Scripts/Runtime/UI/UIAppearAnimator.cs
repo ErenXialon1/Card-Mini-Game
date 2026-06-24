@@ -22,6 +22,7 @@ namespace CardMiniGame.UI
         [SerializeField] private bool useUnscaledTime = true;
 
         private Sequence sequence;
+    // Animates UI elements with fade and scale effects.
 
         public void Show()
         {

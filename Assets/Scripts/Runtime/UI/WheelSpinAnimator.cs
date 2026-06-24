@@ -6,6 +6,7 @@ using UnityEngine;
 namespace CardMiniGame.UI
 {
     public class WheelSpinAnimator : MonoBehaviour
+    // Plays the wheel spin animation.
     {
         [SerializeField] private RectTransform animatedRoot;
 

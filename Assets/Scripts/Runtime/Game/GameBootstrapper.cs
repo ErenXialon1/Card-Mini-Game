@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Game
 {
+    // Sets up the required systems and starts the initial game flow.
     public class GameBootstrapper : MonoBehaviour
     {
         [SerializeField] private ZoneConfig zoneConfig;

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class RewardCardView : MonoBehaviour, IPointerClickHandler
+    // Displays the visual card for a spin result.
     {
         [SerializeField] private GameObject root;
         [SerializeField] private Image frameImage;

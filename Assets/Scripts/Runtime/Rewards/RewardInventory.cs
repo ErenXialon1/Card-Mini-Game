@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 namespace CardMiniGame.Rewards
 {
+    // Manages the rewards collected during a single session.
     public class RewardInventory
     {
         private readonly List<CollectedReward> rewards = new List<CollectedReward>();

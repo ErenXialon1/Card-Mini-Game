@@ -5,6 +5,7 @@ using UnityEngine;
 namespace CardMiniGame.UI
 {
     public class RewardListView : MonoBehaviour
+    // Shows the collected rewards as a list.
     {
         [SerializeField] private Transform rewardListContainer;
         [SerializeField] private RewardItemView rewardItemTemplate;

@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace CardMiniGame.UI
 {
+    // Plays sound effects for button interactions.
     [DisallowMultipleComponent]
     public class ButtonSound : MonoBehaviour,
         IPointerEnterHandler,

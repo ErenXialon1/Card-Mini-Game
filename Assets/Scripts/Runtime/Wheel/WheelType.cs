@@ -1,5 +1,6 @@
 namespace CardMiniGame.Wheel
 {
+    // Defines the available wheel types.
     public enum WheelType
     {
         Normal = 0,

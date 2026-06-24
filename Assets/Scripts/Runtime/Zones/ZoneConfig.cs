@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace CardMiniGame.Zones
 {
+    // Stores the zone rules and threshold settings.
     [CreateAssetMenu(fileName = "zone_config", menuName = "Vertigo Demo/Zone Config")]
     public class ZoneConfig : ScriptableObject
     {

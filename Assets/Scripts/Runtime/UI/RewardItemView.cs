@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class RewardItemView : MonoBehaviour
+    // Shows a single reward entry inside the list.
     {
         [SerializeField] private TMP_Text amountText;
         [SerializeField] private Image iconImage;

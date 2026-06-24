@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace CardMiniGame.UI
 {
+    // Changes UI scale on hover and interaction.
     [DisallowMultipleComponent]
     public class UIScaleHoverEffect : MonoBehaviour,
         IPointerEnterHandler,

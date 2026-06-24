@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class InventoryPopupView : MonoBehaviour
+    // Manages the inventory popup open and close behavior.
     {
         [SerializeField] private AutoButtonBinder closeButton;
         [SerializeField] private PersistentInventoryView inventoryView;

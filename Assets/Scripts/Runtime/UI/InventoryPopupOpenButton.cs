@@ -10,6 +10,7 @@ namespace CardMiniGame.UI
         [SerializeField] private InventoryPopupView popupView;
 
         private void Awake()
+    // Wires the button that opens the inventory popup.
         {
             BindButton();
         }

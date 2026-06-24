@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace CardMiniGame.UI
 {
     public class PersistentCoinView : MonoBehaviour
+    // Displays the persistent coin amount on screen.
     {
         [SerializeField] private TMP_Text coinText;
         [SerializeField] private Image iconImage;
